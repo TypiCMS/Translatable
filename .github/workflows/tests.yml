@@ -1,6 +1,6 @@
-name: run-tests
+name: tests
 
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 jobs:
     test:
@@ -8,10 +8,10 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                os: [ubuntu-latest]
-                php: [8.5, 8.4, 8.3, 8.2, 8.1, 8.0]
-                laravel: [13.*, 12.*, 11.*, 10.*]
-                stability: [prefer-lowest, prefer-stable]
+                os: [ ubuntu-latest ]
+                php: [ 8.5, 8.4, 8.3, 8.2, 8.1, 8.0 ]
+                laravel: [ 13.*, 12.*, 11.*, 10.* ]
+                stability: [ prefer-stable ]
                 include:
                     -   laravel: 13.*
                         testbench: 11.*
@@ -47,7 +47,7 @@ jobs:
 
         steps:
             -   name: Checkout code
-                uses: actions/checkout@v4
+                uses: actions/checkout@v6
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
@@ -56,9 +56,13 @@ jobs:
                     extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick
                     coverage: none
 
+            -   name: Remove dev dependencies incompatible with older Laravel
+                if: matrix.laravel == '10.*'
+                run: composer remove larastan/larastan driftingly/rector-laravel laravel/pint --dev --no-interaction --no-update
+
             -   name: Install dependencies
                 run: |
-                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction
+                    composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
                     composer update --${{ matrix.stability }} --prefer-dist --no-interaction
 
             -   name: Execute tests
