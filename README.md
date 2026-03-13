@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/typicms/translatable.svg?style=flat-square)](https://packagist.org/packages/typicms/translatable)
 [![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/typicms/translatable/run-tests.yml)
+[![run-tests](https://github.com/typicms/translatable/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/typicms/translatable/actions/workflows/run-tests.yml)
 
 This project is based on spatie/laravel-translatable, it resolves inconsistencies that have arisen over time in the initial project. 
 
