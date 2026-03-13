@@ -35,14 +35,14 @@
     ],
     "require": {
         "php": "^8.0",
-        "illuminate/database": "^10.0|^11.0|^12.0|^13.0",
-        "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
+        "illuminate/database": "^9.0|^10.0|^11.0|^12.0|^13.0",
+        "illuminate/support": "^9.0|^10.0|^11.0|^12.0|^13.0",
         "spatie/laravel-package-tools": "^1.11"
     },
     "require-dev": {
         "driftingly/rector-laravel": "^1.0|^2.1",
         "larastan/larastan": "^2.11.2|^3.9",
-        "laravel/pint": "^1.20",
+        "laravel/pint": "^1.0",
         "mockery/mockery": "^1.4",
         "nunomaduro/collision": "^6.0|^7.0|^8.0",
         "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0|^11.0",
