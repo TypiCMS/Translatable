@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TypiCMS\Translatable\Test;
 
 use Illuminate\Database\Schema\Blueprint;
@@ -23,11 +25,11 @@ abstract class TestCase extends Orchestra
 
     protected function setUpDatabase()
     {
-        Schema::create('test_models', function (Blueprint $table) {
-            $table->increments('id');
-            $table->text('name')->nullable();
-            $table->text('other_field')->nullable();
-            $table->text('field_with_mutator')->nullable();
+        Schema::create('test_models', function (Blueprint $blueprint): void {
+            $blueprint->increments('id');
+            $blueprint->text('name')->nullable();
+            $blueprint->text('other_field')->nullable();
+            $blueprint->text('field_with_mutator')->nullable();
         });
     }
 }
