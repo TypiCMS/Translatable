@@ -1,12 +1,16 @@
 # A trait to make Eloquent models translatable
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/typicms/translatable.svg?style=flat-square)](https://packagist.org/packages/typicms/translatable)
-[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![run-tests](https://github.com/typicms/translatable/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/typicms/translatable/actions/workflows/run-tests.yml)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/typicms/translatable.svg)](https://packagist.org/packages/typicms/translatable)
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
+[![run-tests](https://github.com/typicms/translatable/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/typicms/translatable/actions/workflows/tests.yml)
+[![PHPStan](https://github.com/typicms/translatable/actions/workflows/phpstan.yml/badge.svg?branch=main)](https://github.com/typicms/translatable/actions/workflows/phpstan.yml)
+[![Rector](https://github.com/typicms/translatable/actions/workflows/rector.yml/badge.svg?branch=main)](https://github.com/typicms/translatable/actions/workflows/rector.yml)
 
-This project is based on spatie/laravel-translatable, it resolves inconsistencies that have arisen over time in the initial project. 
+This project is based on spatie/laravel-translatable, it resolves inconsistencies that have arisen over time in the
+initial project.
 
-This package contains a trait `HasTranslations` to make Eloquent models translatable. Translations are stored as json. There is no extra table needed to hold them.
+This package contains a trait `HasTranslations` to make Eloquent models translatable. Translations are stored as json.
+There is no extra table needed to hold them.
 
 ```php
 use Illuminate\Database\Eloquent\Model;
@@ -20,7 +24,7 @@ class NewsItem extends Model
 }
 ```
 
-After the trait is applied on the model you can do these things:
+After the trait is applied on the model, you can do these things:
 
 ```php
 $newsItem = new NewsItem;
@@ -51,15 +55,18 @@ composer test
 
 ## Security
 
-If you've found a bug regarding security please mail [sdebacker@gmail.com](mailto:sdebacker@gmail.com) instead of using the issue tracker.
+If you've found a bug regarding security, please mail [sdebacker@gmail.com](mailto:sdebacker@gmail.com) instead of using
+the issue tracker.
 
 ## Credits
 
 - [Freek Van der Herten](https://github.com/freekmurze)
 - [Sebastian De Deyne](https://github.com/sebastiandedeyne)
-- [All Contributors](../../contributors)
+- [Samuel De Backer](https://github.com/sdebacker)
+- [All Contributors](https://github.com/spatie/laravel-translatable/graphs/contributors)
 
-We got the idea to store translations as json in a column from [Mohamed Said](https://github.com/themsaid). Parts of the readme of [his multilingual package](https://github.com/themsaid/laravel-multilingual) were used in this readme.
+We got the idea to store translations as JSON in a column from [Mohamed Said](https://github.com/themsaid). Parts of the
+readme of [his multilingual package](https://github.com/themsaid/laravel-multilingual) were used in this readme.
 
 ## License
 
