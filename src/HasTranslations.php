@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace TypiCMS\Translatable;
 
-use Deprecated;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -70,11 +69,11 @@ trait HasTranslations
 
         $translation = $translations[$normalizedLocale] ?? null;
 
-        $translatableConfig = resolve(Translatable::class);
+        $translatableConfig = app(Translatable::class);
 
         if ($isKeyMissingFromLocale && $translatableConfig->missingKeyCallback) {
             try {
-                $callbackReturnValue = (resolve(Translatable::class)->missingKeyCallback)($this, $key, $locale, $translation, $normalizedLocale);
+                $callbackReturnValue = (app(Translatable::class)->missingKeyCallback)($this, $key, $locale, $translation, $normalizedLocale);
                 if (is_string($callbackReturnValue)) {
                     $translation = $callbackReturnValue;
                 }
@@ -110,7 +109,7 @@ trait HasTranslations
             $this->guardAgainstNonTranslatableAttribute($key);
 
             return array_filter(
-                json_decode((string) $this->getAttributes()[$key] ?? '' ?: '{}', true) ?: [],
+                json_decode($this->getAttributes()[$key] ?? '' ?: '{}', true) ?: [],
                 fn ($value, $locale) => $this->filterTranslations($value, $locale, $allowedLocales, $keepNullValues),
                 ARRAY_FILTER_USE_BOTH,
             );
@@ -256,7 +255,7 @@ trait HasTranslations
             $fallbackLocale = $this->getFallbackLocale();
         }
 
-        $translatable = resolve(Translatable::class);
+        $translatable = app(Translatable::class);
 
         $fallbackLocale ??= $translatable->fallbackLocale ?? config('app.fallback_locale');
 
@@ -309,7 +308,7 @@ trait HasTranslations
             : [];
     }
 
-    protected function translations(): Attribute
+    public function translations(): Attribute
     {
         return Attribute::get(fn () => collect($this->getTranslatableAttributes())
             ->mapWithKeys(fn (string $key): array => [$key => $this->getTranslations($key)])
@@ -331,12 +330,12 @@ trait HasTranslations
         );
     }
 
-    protected function scopeWhereLocale(Builder $builder, string $column, string $locale): void
+    public function scopeWhereLocale(Builder $builder, string $column, string $locale): void
     {
         $builder->whereNotNull(sprintf('%s->%s', $column, $locale));
     }
 
-    protected function scopeWhereLocales(Builder $builder, string $column, array $locales): void
+    public function scopeWhereLocales(Builder $builder, string $column, array $locales): void
     {
         $builder->where(function (Builder $builder) use ($column, $locales): void {
             foreach ($locales as $locale) {
@@ -345,13 +344,17 @@ trait HasTranslations
         });
     }
 
-    #[Deprecated]
+    /**
+     * @deprecated
+     */
     public static function whereLocale(string $column, string $locale): Builder
     {
         return static::query()->whereNotNull(sprintf('%s->%s', $column, $locale));
     }
 
-    #[Deprecated]
+    /**
+     * @deprecated
+     */
     public static function whereLocales(string $column, array $locales): Builder
     {
         return static::query()->where(function (Builder $builder) use ($column, $locales): void {

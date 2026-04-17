@@ -21,7 +21,7 @@ class TestModelWithoutFallback extends Model
 
     protected $useFallbackLocale = false;
 
-    protected function setFieldWithMutatorAttribute($value): void
+    public function setFieldWithMutatorAttribute($value): void
     {
         $this->attributes['field_with_mutator'] = $value;
     }
