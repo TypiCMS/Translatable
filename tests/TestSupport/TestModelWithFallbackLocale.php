@@ -26,7 +26,7 @@ class TestModelWithFallbackLocale extends Model
         return static::$fallbackLocale;
     }
 
-    public function setFieldWithMutatorAttribute($value): void
+    protected function setFieldWithMutatorAttribute($value): void
     {
         $this->attributes['field_with_mutator'] = $value;
     }

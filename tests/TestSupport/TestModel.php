@@ -19,7 +19,7 @@ class TestModel extends Model
 
     public $translatable = ['name', 'other_field', 'field_with_mutator'];
 
-    public function setFieldWithMutatorAttribute($value): void
+    protected function setFieldWithMutatorAttribute($value): void
     {
         $this->attributes['field_with_mutator'] = $value;
     }

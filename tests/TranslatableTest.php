@@ -155,7 +155,7 @@ it('can save null value in a translated attribute', function (): void {
 });
 
 it('can set translated values when creating a model', function (): void {
-    $model = TestModel::create([
+    $model = TestModel::query()->create([
         'name' => ['en' => 'testValue_en'],
     ]);
 
@@ -419,7 +419,7 @@ it('can use mutators on translated attributes', function (): void {
 });
 
 it('can set translations for default language', function (): void {
-    $model = TestModel::create([
+    $model = TestModel::query()->create([
         'name' => [
             'en' => 'testValue_en',
             'fr' => 'testValue_fr',
